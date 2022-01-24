@@ -1,7 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { convert, FORMAT_CONTENT_TYPE } from '../ra';
 
-
 module.exports = async (request: VercelRequest, response: VercelResponse) => {
 
     let token = process.env.TOKEN;
@@ -17,7 +16,7 @@ module.exports = async (request: VercelRequest, response: VercelResponse) => {
 
     try {
 
-        let format = request.headers['format'] || 'audio-16khz-32kbitrate-mono-mp3';
+        let format = request.headers['format'] || 'riff-48khz-16bit-mono-pcm';
         if (Array.isArray(format)) {
             throw `Invalid format ${format}`;
         }
