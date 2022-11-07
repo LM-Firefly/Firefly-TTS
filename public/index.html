@@ -277,10 +277,22 @@
           updateConfigName();
         }
 
-        function updateConfigName ()
+        function refreshVoice ()
         {
-          let voice = document.getElementsByName( 'voiceName' )[ 0 ].value;
-          document.getElementsByName( 'name' )[ 0 ].value = '大声朗读（' + voice + '）';
+          let voiceElelement = document.getElementsByName( 'voiceName' )[ 0 ];
+          voiceElelement.innerHTMl = '';
+          voices.forEach( item =>
+          {
+            let option = document.createElement( 'option' );
+            option.value = item[ 'ShortName' ];
+            option.innerText = item[ 'FriendlyName' ];
+            if ( item[ 'ShortName' ] == 'zh-CN-XiaoxiaoNeural' )
+            {
+              option.selected = true;
+            }
+            voiceElelement.append( option )
+          } );
+          updateConfigName();
         }
 
         function createSSML ( text, voiceName )
